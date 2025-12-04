@@ -4,14 +4,13 @@ pipeline {
     environment {
        
         IMAGE_NAME = "simple-app"
-        CONTAINER_NAME = "simple-app"
     }
 
     stages {
 
         stage('Build docker image') {
             steps {
-                sh 'docker-compose build $IMAGE_NAME .'
+                sh 'docker-compose build  .'
             }
         }
 
