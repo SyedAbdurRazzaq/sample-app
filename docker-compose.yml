@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mysql:
-    image: mysql:8.0
+    image: mohdbajaj/webapp:latest
     container_name: login-mysql
     restart: always
     environment:
@@ -16,6 +16,7 @@ services:
 
   webapp:
     build: .
+    image: mohdbajaj/webapp:latest
     container_name: login-webapp
     restart: always
     depends_on:
