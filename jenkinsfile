@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    environment {
+       
+        IMAGE_NAME = "simple-app"
+        CONTAINER_NAME = "simple-app"
+    }
+
+    stages {
+
+        stage('Build docker image') {
+            steps {
+                sh 'sudo docker-compose build $IMAGE_NAME:$BUILD_NUMBER .'
+            }
+        }
+
+        stage('Run container') {
+            steps {
+                sh '''
+                  sudo docker-compose up -d 
+                '''
+            }
+        }
+    }
+}
