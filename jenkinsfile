@@ -2,54 +2,42 @@ pipeline {
     agent any
 
     environment {
-        // Bind Jenkins credentials to environment variables
         DOCKER_CREDS = credentials('dockerhub-creds')
     }
 
     stages {
         stage('Build Docker Images') {
             steps {
-                script {
-                    // Build the webapp image using docker-compose
                     sh 'docker-compose build'
-                }
+                
             }
         }
 
         stage('Login to Docker Hub') {
             steps {
-                script {
-                    // Use environment variables for Docker login
                     sh 'echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin'
-                }
             }
         }
 
         stage('Push Images to Docker Hub') {
             steps {
-                script {
-                    // Push the built images to Docker Hub
                     sh 'docker-compose push'
-                }
             }
         }
 
         stage('Run Containers') {
             steps {
-                script {
-                    // Run containers in detached mode
                     sh 'docker-compose up -d'
-                }
             }
         }
     }
 
     post {
         success {
-            echo '✅ Deployment successful! Webapp running on port 8081, MySQL on port 3306.'
+            echo '✅ Deployment successful kid! Webapp running on port 8081, MySQL on port 3306.'
         }
         failure {
-            echo '❌ Deployment failed. Check Jenkins logs and docker-compose output.'
+            echo '❌ Deployment failed idiot. Check Jenkins logs and docker-compose output you fool !!.'
         }
     }
 }
